@@ -1,0 +1,10 @@
+---
+###########################
+# Intstall kubectl
+###########################
+
+- hosts: aws
+  remote_user: ubuntu
+  #connection: local
+  roles:
+    - kubectl-install

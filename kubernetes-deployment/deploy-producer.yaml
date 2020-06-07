@@ -1,0 +1,8 @@
+---
+###########################
+# Intstall kubectl
+###########################
+
+- hosts: aws
+  roles:
+    - deploy-producer

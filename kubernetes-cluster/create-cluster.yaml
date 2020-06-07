@@ -1,0 +1,8 @@
+---
+###########################
+# Create Kubernetes Cluster
+###########################
+
+- hosts: aws
+  roles:
+    - create-cluster

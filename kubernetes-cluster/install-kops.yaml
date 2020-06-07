@@ -1,0 +1,9 @@
+---
+###########################
+# Intstall kubectl
+###########################
+
+- hosts: aws
+  remote_user: ubuntu
+  roles:
+    - kops-install

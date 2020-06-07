@@ -1,0 +1,5 @@
+[targets]
+localhost              ansible_connection=local
+
+[aws]
+ec2-54-172-145-9.compute-1.amazonaws.com

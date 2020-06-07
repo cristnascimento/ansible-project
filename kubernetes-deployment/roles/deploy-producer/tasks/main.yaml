@@ -1,0 +1,13 @@
+---
+
+- name: Copying deployment file to server
+  copy:
+    src: ./deployment/producer_deployment.yaml
+    dest: /tmp/producer_deployment.yaml
+    owner: ubuntu
+    group: ubuntu
+    mode: '0644'
+
+- name: Deploying Producer using kubectl
+  shell: "kubectl apply -f /tmp/producer_deployment.yaml"
+

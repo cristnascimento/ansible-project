@@ -1,0 +1,27 @@
+---
+
+- name: Copying deployment file to server
+  copy:
+    src: ./deployment/server_deployment.yaml
+    dest: /tmp/server_deployment.yaml
+    owner: ubuntu
+    group: ubuntu
+    mode: '0644'
+
+- name: Copying service file to server
+  copy:
+    src: ./deployment/server_service.yaml
+    dest: /tmp/server_service.yaml
+    owner: ubuntu
+    group: ubuntu
+    mode: '0644'
+
+- name: Deploying Server using kubectl
+  shell: "kubectl apply -f /tmp/server_deployment.yaml"
+
+- name: Deploying Server using kubectl
+  shell: "kubectl apply -f /tmp/server_service.yaml"
+
+- name: Changing Exposed IP
+  shell: 'sleep 30; pod=$(kubectl get pods | grep server-deployment* | head -n1 | cut -d " " -f1); echo $pod; ip=$(kubectl get services | grep server-service |  grep -E -o "([0-9]{1,3}[.]){3}[0-9]{1,3}"); kubectl exec $pod -- curl -GET $ip:8888/address --data-urlencode "ip=$ip" --data-urlencode "port=8888"'
+

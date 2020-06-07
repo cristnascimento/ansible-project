@@ -1,0 +1,19 @@
+---
+
+#############
+# Install Kubectl
+#############
+
+- name: Download Kubectl binaries
+  get_url:
+    url: "{{ kubectl_download_path }}/{{ item }}"
+    dest: /usr/local/bin/kubectl_crist
+    owner: root
+    group: root
+    mode: 0755
+    force: yes
+    # TODO Add hash check
+  with_items:
+    - kubectl
+  when: ansible_os_family == 'Debian'
+  become: true
