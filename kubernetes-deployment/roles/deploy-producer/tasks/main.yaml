@@ -4,8 +4,8 @@
   copy:
     src: ./deployment/producer_deployment.yaml
     dest: /tmp/producer_deployment.yaml
-    owner: ubuntu
-    group: ubuntu
+    owner: {{ host_user }}
+    group: {{ host_group }}
     mode: '0644'
 
 - name: Deploying Producer using kubectl

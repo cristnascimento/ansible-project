@@ -4,16 +4,16 @@
   copy:
     src: ./deployment/server_deployment.yaml
     dest: /tmp/server_deployment.yaml
-    owner: ubuntu
-    group: ubuntu
+    owner: {{ host_user }}
+    group: {{ host_group }}
     mode: '0644'
 
 - name: Copying service file to server
   copy:
     src: ./deployment/server_service.yaml
     dest: /tmp/server_service.yaml
-    owner: ubuntu
-    group: ubuntu
+    owner: {{ host_user }}
+    group: {{ host_group }}
     mode: '0644'
 
 - name: Deploying Server using kubectl
