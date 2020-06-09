@@ -4,8 +4,8 @@
   copy:
     src: ./deployment/consumer_deployment.yaml
     dest: /tmp/consumer_deployment.yaml
-    owner: {{ host_user }}
-    group: {{ host_group }}
+    owner: "{{ host_user }}"
+    group: "{{ host_group }}"
     mode: '0644'
 
 - name: Deploying Consumer using kubectl
