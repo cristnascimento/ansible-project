@@ -23,5 +23,7 @@
   shell: "kubectl apply -f /tmp/server_service.yaml"
 
 - name: Changing Exposed IP
-  shell: 'sleep 30; pod=$(kubectl get pods | grep server-deployment* | head -n1 | cut -d " " -f1); echo $pod; ip=$(kubectl get services | grep server-service |  grep -E -o "([0-9]{1,3}[.]){3}[0-9]{1,3}"); kubectl exec $pod -- curl -GET $ip:8888/address --data-urlencode "ip=$ip" --data-urlencode "port=8888"'
-
+  shell: 'pod=$(kubectl get pods | grep server-deployment* | head -n1 | cut -d " " -f1); echo $pod; ip=$(kubectl get services | grep server-service |  grep -E -o "([0-9]{1,3}[.]){3}[0-9]{1,3}"); kubectl exec $pod -- curl -GET $ip:8888/address --data-urlencode "ip=$ip" --data-urlencode "port=8888"'
+  retries: 3
+  delay: 60
+  ignore_errors: yes
